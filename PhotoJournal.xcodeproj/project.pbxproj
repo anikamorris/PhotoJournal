@@ -78,6 +78,7 @@
 		61B8074924509393004EAF61 = {
 			isa = PBXGroup;
 			children = (
+				61A75C1324566DDC00D750B7 /* README.md */,
 				61B8075424509393004EAF61 /* PhotoJournal */,
 				61B8076B24509394004EAF61 /* PhotoJournalTests */,
 				61B8075324509393004EAF61 /* Products */,
@@ -136,7 +137,6 @@
 				61B807792452AFF9004EAF61 /* RegisterView.swift */,
 				61B807812454074B004EAF61 /* PhotoCollectionView.swift */,
 				61B8078324541323004EAF61 /* PhotoCollectionViewCell.swift */,
-				61A75C1324566DDC00D750B7 /* README.md */,
 			);
 			path = Views;
 			sourceTree = "<group>";
