@@ -36,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		61A75C112454FD5000D750B7 /* MediaSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSelectorView.swift; sourceTree = "<group>"; };
+		61A75C1324566DDC00D750B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		61B8075224509393004EAF61 /* PhotoJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B8075524509393004EAF61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61B8075724509393004EAF61 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 				61B807792452AFF9004EAF61 /* RegisterView.swift */,
 				61B807812454074B004EAF61 /* PhotoCollectionView.swift */,
 				61B8078324541323004EAF61 /* PhotoCollectionViewCell.swift */,
+				61A75C1324566DDC00D750B7 /* README.md */,
 			);
 			path = Views;
 			sourceTree = "<group>";

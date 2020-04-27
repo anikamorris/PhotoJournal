@@ -11,7 +11,7 @@ import UIKit
 class LoginView: UIView {
     
     var delegate: LoginSignUpViewController? = nil
-    
+    // initialize emailTextField
     let emailTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -23,6 +23,7 @@ class LoginView: UIView {
         return textField
     }()
     
+    // initialize passwordTextField
     let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +35,7 @@ class LoginView: UIView {
         return textField
     }()
     
-    
+    // initialize loginButton
     let loginButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +46,7 @@ class LoginView: UIView {
         return button
     }()
     
-    
+    // initialize registerButton
     let registerButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -56,13 +57,12 @@ class LoginView: UIView {
         return button
     }()
     
-    
     @objc func gotoRegisterView(){
+        // animate view constraint change
         delegate?.animateViewFrame(animation: .LoginToRegister)
-        UIView.animate(withDuration: 0.5) {
-            self.layoutIfNeeded()
-        }
     }
+    
+    //login logic
     @objc func login(){
         delegate?.login()
     }

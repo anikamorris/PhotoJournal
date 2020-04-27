@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// keep track of what we want to animate
 enum LoginVCTransitionAnims {
     case LoginToRegister
     case RegisterToLogin
@@ -28,6 +28,7 @@ class LoginSignUpViewController: UIViewController {
     func setupView(){
         self.view.addSubview(loginView)
         loginView.delegate = self
+        //call extension to make sure the keyboard gets dismissed when tapped elsewhere
         hideKeyboardTapped()
         self.view.addSubview(registerView)
         registerView.delegate = self
@@ -52,6 +53,7 @@ class LoginSignUpViewController: UIViewController {
     }
     
     func animateViewFrame(animation: LoginVCTransitionAnims){
+        // animate constraints
         switch animation {
         case .LoginToRegister:
             UIView.animate(withDuration: 0.25) {
@@ -73,11 +75,23 @@ class LoginSignUpViewController: UIViewController {
     }
     
     func login(){
+        
+        // login logic
         let vc = PhotoJournalViewController()
         vc.modalPresentationStyle = .currentContext
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func register(){
+        
+        // login logic
+        let vc = PhotoJournalViewController()
+        vc.modalPresentationStyle = .currentContext
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
