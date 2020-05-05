@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-
+var vSpinner: UIView?
 extension UIViewController {
     static func instantiate() -> Self {
         

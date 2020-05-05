@@ -33,6 +33,7 @@ class MediaSelectorView: UIView {
         return button
     }()
     
+    // logic if the user wants to use an image from the gallery
     @objc func galleryButtonClicked(){
         let vc = UIImagePickerController()
         vc.sourceType = .savedPhotosAlbum
@@ -43,6 +44,7 @@ class MediaSelectorView: UIView {
         })
     }
     
+    // Logic if the user wants to take a picture
     @objc func cameraButtonClicked(){
         let vc = UIImagePickerController()
         vc.sourceType = .camera

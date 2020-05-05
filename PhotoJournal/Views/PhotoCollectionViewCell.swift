@@ -30,15 +30,6 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         setupViews()
     }
     
-    private func setupGestureRecognizer() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
-        photoView.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
-    @objc func cellTapped(){
-        print("CEll TApped")
-    }
-    
     func setupViews(){
         self.addSubview(photoView)
         self.backgroundColor = UIColor.init(hex: 0x34b1eb)

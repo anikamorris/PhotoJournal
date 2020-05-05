@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// animations we use through out the app
 enum PhotoVCTransitionAnims {
     case PhotoListToJournal
     case JournalToPhotoList
@@ -36,10 +37,12 @@ class PhotoJournalViewController: UIViewController {
         self.view.addSubview(mediaSelectorview)
         mediaSelectorview.delegate = self
         self.title = "Photo Journal"
+        // assign and activate the Achors we will animate to make everything move.
         topAnchor = photoCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor)
         leadingAnchor = photoCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         topAnchor?.isActive = true
         leadingAnchor?.isActive = true
+        
         NSLayoutConstraint.activate([
             photoCollectionView.heightAnchor.constraint(equalToConstant: screen.bounds.height),
             photoCollectionView.widthAnchor.constraint(equalToConstant: screen.bounds.width),
@@ -66,36 +69,39 @@ class PhotoJournalViewController: UIViewController {
         self.navigationItem.rightBarButtonItems = [addEntryBarButton]
         
     }
-    
+    // function that takes us to the Media Selector screen
     @objc func gotoMediaSelector(){
         self.animateViewFrame(animation: .PhotoListToMediaSelector)
     }
-    
+    // function to add an entry to our firebase
     @objc func addEntry(){
         self.animateViewFrame(animation: .PhotoListToMediaSelector)
     }
     
-    
+    // function to log out
     @objc func logout(){
         self.navigationController?.popViewController(animated: true)
+        self.navigationController?.viewControllers = [LoginSignUpViewController()]
     }
     
+    // function to cancel when we're at the journal screen. takes us back to the Collection view
     @objc func cancel(){
         self.animateViewFrame(animation: .JournalToPhotoList)
         dismissKeyboard()
     }
     
+    // function that handels cancel being pressed from the MediaSelector
     @objc func cancelFromMediaSelector(){
         self.animateViewFrame(animation: .MediaSelectorToPhotoList)
     }
     
-    
+    // function in charge of the animation logic.
     func animateViewFrame(animation: PhotoVCTransitionAnims){
-        
+        // switch over the possible animations we could use.
         switch animation {
+        // if we are going from the Collection view to th journal View ex. we tapped on a cell
         case .PhotoListToJournal:
             UIView.animate(withDuration: 0.25) {
-                
                 self.leadingAnchor?.isActive = false
                 self.leadingAnchor = self.photoCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -1 * self.screen.bounds.width)
                 self.leadingAnchor?.isActive = true
@@ -111,6 +117,7 @@ class PhotoJournalViewController: UIViewController {
             }
             
             break
+        // if we are going from the journal back to the Collection view ex. we clicked cancel, save or update
         case .JournalToPhotoList:
             UIView.animate(withDuration: 0.25) {
                          self.leadingAnchor?.isActive = false
@@ -129,6 +136,7 @@ class PhotoJournalViewController: UIViewController {
                 }
             }
             break
+        // if we are going to the media selector from the collectionView ex. we clicked the "+" button
         case .PhotoListToMediaSelector:
             UIView.animate(withDuration: 0.25) {
                 self.topAnchor?.isActive = false
@@ -140,6 +148,7 @@ class PhotoJournalViewController: UIViewController {
                 self.navigationItem.leftBarButtonItems = []
             }
             break
+        // if we clicked cancel from the Media selector
         case .MediaSelectorToPhotoList:
             UIView.animate(withDuration: 0.25) {
                 self.topAnchor?.isActive = false
@@ -152,7 +161,7 @@ class PhotoJournalViewController: UIViewController {
                  self.navigationItem.leftBarButtonItems = [logoutBarButton]
             }
             break
-            
+        // Once we tap what kind of media we want to use then we proceed to the journal view
         case .MediaSelectorToJournal:
             UIView.animate(withDuration: 0.25) {
                 
@@ -175,21 +184,27 @@ class PhotoJournalViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // hides that back button that is there by default.
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
 }
 
 extension PhotoJournalViewController: UIImagePickerControllerDelegate{
+    // handles logic after a user has picked an image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         guard let image = info[.editedImage] as? UIImage else {
             print("No image found")
             return
         }
+        // once the picker is dismissed and we have an image we change the journal image and we navigate to it.
         picker.dismiss(animated: true) {
             self.journalView.photoView.image = image
             self.animateViewFrame(animation: .MediaSelectorToJournal)
         }
     }
+}
+extension PhotoJournalViewController: UINavigationControllerDelegate{
+    
 }
 
