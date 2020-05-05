@@ -33,7 +33,7 @@ class LoginSignUpViewController: UIViewController {
         self.view.addSubview(registerView)
         registerView.delegate = self
         
-       leadingAnchor = loginView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
+        leadingAnchor = loginView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         leadingAnchor!.isActive = true
         
         
@@ -75,12 +75,14 @@ class LoginSignUpViewController: UIViewController {
     }
     
     func login(){
-        guard let email = loginView.emailTextField.text else {
+        let email = loginView.emailTextField.text
+        if email == "" {
             showErrorAlert(title: "Email", message: "The email field cannot be empty")
             return
         }
         
-        guard let password = loginView.passwordTextField.text else {
+        let password = loginView.passwordTextField.text
+        if password == "" {
             showErrorAlert(title: "Password", message: "The password field cannot be empty")
             return
         }
@@ -92,12 +94,14 @@ class LoginSignUpViewController: UIViewController {
     }
     
     func register(){
-        guard let email = loginView.emailTextField.text else {
+        let email = loginView.emailTextField.text
+        if email == "" {
             showErrorAlert(title: "Email", message: "The email field cannot be empty")
             return
         }
         
-        guard let password = loginView.passwordTextField.text else {
+        let password = loginView.passwordTextField.text
+        if password == "" {
             showErrorAlert(title: "Password", message: "The password field cannot be empty")
             return
         }
