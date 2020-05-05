@@ -6,7 +6,11 @@ target 'PhotoJournal' do
   use_frameworks!
 
   # Pods for PhotoJournal
-  pod 'Firebase/Analytics'
+    pod 'Firebase/Analytics'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Firestore'
+    pod 'FirebaseFirestoreSwift'
+    pod 'Firebase/Storage'
   target 'PhotoJournalTests' do
     inherit! :search_paths
     # Pods for testing

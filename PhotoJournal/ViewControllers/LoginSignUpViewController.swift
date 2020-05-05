@@ -91,7 +91,12 @@ class LoginSignUpViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
+    
+    func showErrorAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -100,4 +105,5 @@ class LoginSignUpViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
+
 

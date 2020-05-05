@@ -49,6 +49,7 @@ class RegisterView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .black
         button.setTitle("Register Account", for: .normal)
+        button.addTarget(self, action: #selector(register), for: .touchUpInside)
         return button
     }()
     
@@ -72,6 +73,10 @@ class RegisterView: UIView {
         emailTextField.text = ""
         passwordTextField.text = ""
         confirmPasswordTextField.text = ""
+    }
+    
+    @objc func register(){
+        delegate?.register()
     }
     
     required init?(coder: NSCoder) {

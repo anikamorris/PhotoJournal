@@ -14,6 +14,7 @@ enum PhotoVCTransitionAnims {
     case JournalToPhotoList
     case PhotoListToMediaSelector
     case MediaSelectorToPhotoList
+    case MediaSelectorToJournal
 }
 
 class PhotoJournalViewController: UIViewController {
@@ -60,10 +61,14 @@ class PhotoJournalViewController: UIViewController {
         
         self.navigationItem.leftBarButtonItems = [logoutBarButton]
         
-        let addEntryBarButton = UIBarButtonItem(title: "＋", style: .plain, target: self, action: #selector(addEntry))
+        let addEntryBarButton = UIBarButtonItem(title: "＋", style: .plain, target: self, action: #selector(gotoMediaSelector))
         
         self.navigationItem.rightBarButtonItems = [addEntryBarButton]
         
+    }
+    
+    @objc func gotoMediaSelector(){
+        self.animateViewFrame(animation: .PhotoListToMediaSelector)
     }
     
     @objc func addEntry(){
@@ -98,26 +103,30 @@ class PhotoJournalViewController: UIViewController {
                 
                 let cancelBarButton = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(self.cancel))
                 
-                let saveBarButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(self.cancel))
+                let saveBarButton = UIBarButtonItem(title: "Update", style: .done, target: self, action: #selector(self.addEntry))
                 
                 self.navigationItem.rightBarButtonItems = [saveBarButton]
                 self.navigationItem.leftBarButtonItems = [cancelBarButton]
+                self.hideKeyboardTapped()
             }
             
             break
         case .JournalToPhotoList:
             UIView.animate(withDuration: 0.25) {
-                self.leadingAnchor?.isActive = false
+                         self.leadingAnchor?.isActive = false
                 self.leadingAnchor = self.photoCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
                 self.leadingAnchor?.isActive = true
                 self.view.layoutIfNeeded()
-                let addEntryBarButton = UIBarButtonItem(title: "＋", style: .plain, target: self, action: #selector(self.addEntry))
+                let addEntryBarButton = UIBarButtonItem(title: "＋", style: .plain, target: self, action: #selector(self.gotoMediaSelector))
                 self.journalView.journalEntryTextView.text = ""
                 self.navigationItem.rightBarButtonItems = [addEntryBarButton]
                 
                 let logoutBarButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(self.logout))
                 
                 self.navigationItem.leftBarButtonItems = [logoutBarButton]
+                for gesture in self.view.gestureRecognizers!{
+                    self.view.removeGestureRecognizer(gesture)
+                }
             }
             break
         case .PhotoListToMediaSelector:
@@ -134,15 +143,33 @@ class PhotoJournalViewController: UIViewController {
         case .MediaSelectorToPhotoList:
             UIView.animate(withDuration: 0.25) {
                 self.topAnchor?.isActive = false
-                self.topAnchor = self.photoCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor)
+                 self.topAnchor = self.photoCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor)
+                 self.leadingAnchor?.isActive = true
+                 self.view.layoutIfNeeded()
+                 let addEntryBarButton = UIBarButtonItem(title: "＋", style: .plain, target: self, action: #selector(self.gotoMediaSelector))
+                 self.navigationItem.rightBarButtonItems = [addEntryBarButton]
+                 let logoutBarButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(self.logout))
+                 self.navigationItem.leftBarButtonItems = [logoutBarButton]
+            }
+            break
+            
+        case .MediaSelectorToJournal:
+            UIView.animate(withDuration: 0.25) {
+                
+                self.leadingAnchor?.isActive = false
+                self.leadingAnchor = self.photoCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -1 * self.screen.bounds.width)
                 self.leadingAnchor?.isActive = true
                 self.view.layoutIfNeeded()
-                let addEntryBarButton = UIBarButtonItem(title: "＋", style: .plain, target: self, action: #selector(self.addEntry))
-                self.navigationItem.rightBarButtonItems = [addEntryBarButton]
-                let logoutBarButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(self.logout))
                 
-                self.navigationItem.leftBarButtonItems = [logoutBarButton]
+                let cancelBarButton = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(self.cancel))
+                
+                let saveBarButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(self.addEntry))
+                
+                self.navigationItem.rightBarButtonItems = [saveBarButton]
+                self.navigationItem.leftBarButtonItems = [cancelBarButton]
+                self.hideKeyboardTapped()
             }
+            
             break
         }
     }
@@ -161,11 +188,8 @@ extension PhotoJournalViewController: UIImagePickerControllerDelegate{
         }
         picker.dismiss(animated: true) {
             self.journalView.photoView.image = image
-            self.animateViewFrame(animation: .PhotoListToJournal)
+            self.animateViewFrame(animation: .MediaSelectorToJournal)
         }
     }
 }
 
-extension PhotoJournalViewController: UINavigationControllerDelegate{
-    
-}

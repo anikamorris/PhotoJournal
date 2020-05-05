@@ -12,7 +12,6 @@ import UIKit
 class PhotoCollectionView: UIView {
     var delegate: PhotoJournalViewController? = nil
 
-    
     let photoCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
