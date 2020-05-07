@@ -75,7 +75,7 @@ class PhotoJournalViewController: UIViewController {
     }
     // function to add an entry to our firebase
     @objc func addEntry(){
-        self.animateViewFrame(animation: .PhotoListToMediaSelector)
+        self.animateViewFrame(animation: .JournalToPhotoList)
     }
     
     // function to log out

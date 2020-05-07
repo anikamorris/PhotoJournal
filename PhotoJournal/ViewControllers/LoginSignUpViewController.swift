@@ -94,13 +94,13 @@ class LoginSignUpViewController: UIViewController {
     }
     
     func register(){
-        let email = loginView.emailTextField.text
+        let email = registerView.emailTextField.text
         if email == "" {
             showErrorAlert(title: "Email", message: "The email field cannot be empty")
             return
         }
         
-        let password = loginView.passwordTextField.text
+        let password = registerView.passwordTextField.text
         if password == "" {
             showErrorAlert(title: "Password", message: "The password field cannot be empty")
             return
