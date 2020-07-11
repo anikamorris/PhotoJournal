@@ -125,6 +125,17 @@ class LoginSignUpViewController: UIViewController {
             return
         }
         
+        let confirmedPassword = registerView.confirmPasswordTextField.text
+        if confirmedPassword == "" {
+            showErrorAlert(title: "Password", message: "The password field cannot be empty")
+            return
+        }
+        
+        if password != confirmedPassword {
+            showErrorAlert(title: "Password", message: "Passwords do not match")
+            return
+        }
+        
         Auth.auth().createUser(withEmail: email!, password: password!) { authResult, error in
             if error == nil {
                 self.authSignIn(email: email!, password: password!)
