@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseFirestore
 
 // animations we use through out the app
 enum PhotoVCTransitionAnims {
@@ -25,6 +28,9 @@ class PhotoJournalViewController: UIViewController {
     let screen = UIScreen.main
     var leadingAnchor: NSLayoutConstraint? = nil
     var topAnchor: NSLayoutConstraint? = nil
+    let database = Firestore.firestore()
+    let storage = Storage.storage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -75,11 +81,64 @@ class PhotoJournalViewController: UIViewController {
     }
     // function to add an entry to our firebase
     @objc func addEntry(){
-        self.animateViewFrame(animation: .JournalToPhotoList)
+        showSpinner(onView: self.view)
+        if let userId = UserDefaults.standard.string(forKey: "UserId") {
+            var ref: DocumentReference? = nil
+            let storageRef = storage.reference()
+            let textToSave = self.journalView.journalEntryTextView.text!
+            let imageData = self.journalView.photoView.image?.pngData()
+            let imageRef = storageRef.child("images/\(NSUUID().uuidString)")
+            
+            let uploadTask = imageRef.putData(imageData!, metadata: nil) { metadata, error in
+                if error != nil {
+                    print("Error uploading image: \(error!.localizedDescription)")
+                }
+            }
+            
+            uploadTask.observe(.success) { (snapshot) in
+                // get image URL
+                imageRef.downloadURL { url, error in
+                    guard let downloadURL = url else {
+                        print("failed to get downloaded url")
+                        return
+                    }
+                    
+                    let date = NSDate()
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "M/d/yyyy, HH/mm a"
+                    dateFormatter.timeZone = NSTimeZone() as TimeZone
+                    let localDate = dateFormatter.string(from: date as Date)
+                    
+                    ref = self.database.collection("\(userId)").addDocument(data: [
+                        "imagePath" : "\(downloadURL)",
+                        "textEntry" : "\(textToSave)",
+                        "timeStamp" : "\(localDate)"
+                    ]) { error in
+                        if let error = error {
+                            print("Error saving document: \(error.localizedDescription)")
+                        } else {
+                            print("Saved successfully with document ID: \(ref!.documentID)")
+                        }
+                    }
+                    self.removeSpinner()
+                    self.animateViewFrame(animation: .JournalToPhotoList)
+                }
+                self.dismissKeyboard()
+            }
+        }
     }
     
     // function to log out
     @objc func logout(){
+        let firebaseAuth = Auth.auth()
+        
+        do {
+            try firebaseAuth.signOut()
+        } catch let error as NSError {
+            print("Error signing out: \(error.localizedDescription)")
+        }
+        
+        UserDefaults.standard.removeObject(forKey: "UserId")
         self.navigationController?.popViewController(animated: true)
         self.navigationController?.viewControllers = [LoginSignUpViewController()]
     }
