@@ -25,6 +25,7 @@
 		61C9D78C2454912C00C1EB9E /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C9D78B2454912C00C1EB9E /* UIColorExt.swift */; };
 		61C9D78E245499FC00C1EB9E /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C9D78D245499FC00C1EB9E /* JournalView.swift */; };
 		CF4E705A24B9925F003B6D91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF4E705924B9925F003B6D91 /* GoogleService-Info.plist */; };
+		CF4E705C24BA791B003B6D91 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E705B24BA791B003B6D91 /* Entry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		7A583D7750FD19BAE3D7753D /* Pods-PhotoJournal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoJournal.release.xcconfig"; path = "Target Support Files/Pods-PhotoJournal/Pods-PhotoJournal.release.xcconfig"; sourceTree = "<group>"; };
 		9D9F4A2CD821DD3651BEB7F5 /* Pods-PhotoJournal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoJournal.debug.xcconfig"; path = "Target Support Files/Pods-PhotoJournal/Pods-PhotoJournal.debug.xcconfig"; sourceTree = "<group>"; };
 		CF4E705924B9925F003B6D91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CF4E705B24BA791B003B6D91 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		D63676659C7244CF4A9FDE88 /* Pods-PhotoJournalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoJournalTests.release.xcconfig"; path = "Target Support Files/Pods-PhotoJournalTests/Pods-PhotoJournalTests.release.xcconfig"; sourceTree = "<group>"; };
 		DE39888A0229FA8E166F84B1 /* Pods_PhotoJournalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoJournalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -124,6 +126,7 @@
 				61B8075724509393004EAF61 /* SceneDelegate.swift */,
 				61B8077B2453EF27004EAF61 /* UIViewControllerExt.swift */,
 				61C9D78B2454912C00C1EB9E /* UIColorExt.swift */,
+				CF4E705B24BA791B003B6D91 /* Entry.swift */,
 				61B8078024540730004EAF61 /* Views */,
 				61B8077F245406E6004EAF61 /* ViewControllers */,
 				61B8075E24509394004EAF61 /* Assets.xcassets */,
@@ -346,6 +349,7 @@
 			files = (
 				61C9D78E245499FC00C1EB9E /* JournalView.swift in Sources */,
 				61B8075A24509393004EAF61 /* LoginSignUpViewController.swift in Sources */,
+				CF4E705C24BA791B003B6D91 /* Entry.swift in Sources */,
 				61A75C122454FD5000D750B7 /* MediaSelectorView.swift in Sources */,
 				61B8077A2452AFF9004EAF61 /* RegisterView.swift in Sources */,
 				61B8077C2453EF27004EAF61 /* UIViewControllerExt.swift in Sources */,

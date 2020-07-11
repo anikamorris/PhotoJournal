@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class PhotoCollectionView: UIView {
     var delegate: PhotoJournalViewController? = nil
