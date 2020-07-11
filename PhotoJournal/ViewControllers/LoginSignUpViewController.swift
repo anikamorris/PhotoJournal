@@ -76,23 +76,32 @@ class LoginSignUpViewController: UIViewController {
         }
     }
     
-    func login(){
-        guard let email = loginView.emailTextField.text else { return }
-        if email == "" {
-            showErrorAlert(title: "Email", message: "The email field cannot be empty")
-            return
+    func login(email: String?, password: String?) {
+        if let email = email, let password = password {
+            authSignIn(email: email, password: password)
+        } else {
+            guard let email = loginView.emailTextField.text else { return }
+            if email == "" {
+                showErrorAlert(title: "Email", message: "The email field cannot be empty")
+                return
+            }
+            
+            guard let password = loginView.passwordTextField.text else { return }
+            if password == "" {
+                showErrorAlert(title: "Password", message: "The password field cannot be empty")
+                return
+            }
+            
+            authSignIn(email: email, password: password)
         }
-        
-        guard let password = loginView.passwordTextField.text else { return }
-        if password == "" {
-            showErrorAlert(title: "Password", message: "The password field cannot be empty")
-            return
-        }
-
+    }
+    
+    func authSignIn(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             guard let strongSelf = self else { return }
             
             if error == nil {
+                UserDefaults.standard.set(authResult?.user.uid, forKey: "UserId")
                 let vc = PhotoJournalViewController()
                 vc.modalPresentationStyle = .currentContext
                 strongSelf.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -101,8 +110,6 @@ class LoginSignUpViewController: UIViewController {
                 strongSelf.showErrorAlert(title: "Login", message: error!.localizedDescription)
             }
         }
-        
-        
     }
     
     func register(){
@@ -117,11 +124,14 @@ class LoginSignUpViewController: UIViewController {
             showErrorAlert(title: "Password", message: "The password field cannot be empty")
             return
         }
-        // register logic
-        let vc = PhotoJournalViewController()
-        vc.modalPresentationStyle = .currentContext
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        Auth.auth().createUser(withEmail: email!, password: password!) { authResult, error in
+            if error == nil {
+                self.authSignIn(email: email!, password: password!)
+            } else {
+                self.showErrorAlert(title: "Registration", message: error!.localizedDescription)
+            }
+        }
     }
     
     func showErrorAlert(title: String, message: String) {

@@ -26,9 +26,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         FirebaseApp.configure()
         
         // nesting a viewController into a UINavigationview Controller
-        let navController = UINavigationController(rootViewController: LoginSignUpViewController())
-        // hidding navBar
-        navController.setNavigationBarHidden(true, animated: false)
+        var navController = UINavigationController(rootViewController: LoginSignUpViewController())
+        if UserDefaults.standard.string(forKey: "UserId") != nil {
+            navController = UINavigationController(rootViewController: PhotoJournalViewController())
+        } else {
+            // hiding navBar
+            navController.setNavigationBarHidden(true, animated: false)
+        }
         // assinging roootVC
         window?.rootViewController = navController
         window?.makeKeyAndVisible()

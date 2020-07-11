@@ -73,7 +73,7 @@ class LoginView: UIView {
     
     //login logic
     @objc func login(){
-        delegate?.login()
+        delegate?.login(email: nil, password: nil)
     }
     
     override init(frame: CGRect){
