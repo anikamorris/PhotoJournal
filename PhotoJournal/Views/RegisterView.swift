@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+
 class RegisterView: UIView {
     var delegate: LoginSignUpViewController? = nil
     
@@ -18,6 +19,8 @@ class RegisterView: UIView {
         textField.textColor = .black
         textField.attributedPlaceholder =
             NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.layer.cornerRadius = 5
+        textField.clipsToBounds = true
         return textField
     }()
     
@@ -29,6 +32,8 @@ class RegisterView: UIView {
         textField.isSecureTextEntry = true
         textField.attributedPlaceholder =
             NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.layer.cornerRadius = 5
+        textField.clipsToBounds = true
         return textField
     }()
     
@@ -40,6 +45,8 @@ class RegisterView: UIView {
         textField.isSecureTextEntry = true
         textField.attributedPlaceholder =
             NSAttributedString(string: "Confirm Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.layer.cornerRadius = 5
+        textField.clipsToBounds = true
         return textField
     }()
     
@@ -49,6 +56,8 @@ class RegisterView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .black
         button.setTitle("Register Account", for: .normal)
+        button.layer.cornerRadius = 5
+        button.clipsToBounds = true
         button.addTarget(self, action: #selector(register), for: .touchUpInside)
         return button
     }()
@@ -58,6 +67,8 @@ class RegisterView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .black
         button.setTitle("Cancel", for: .normal)
+        button.layer.cornerRadius = 5
+        button.clipsToBounds = true
         button.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         return button
     }()

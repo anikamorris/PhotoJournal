@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+
 // keep track of what we want to animate
 enum LoginVCTransitionAnims {
     case LoginToRegister
@@ -75,22 +77,32 @@ class LoginSignUpViewController: UIViewController {
     }
     
     func login(){
-        let email = loginView.emailTextField.text
+        guard let email = loginView.emailTextField.text else { return }
         if email == "" {
             showErrorAlert(title: "Email", message: "The email field cannot be empty")
             return
         }
         
-        let password = loginView.passwordTextField.text
+        guard let password = loginView.passwordTextField.text else { return }
         if password == "" {
             showErrorAlert(title: "Password", message: "The password field cannot be empty")
             return
         }
-        // login logic
-        let vc = PhotoJournalViewController()
-        vc.modalPresentationStyle = .currentContext
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.pushViewController(vc, animated: true)
+
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let strongSelf = self else { return }
+            
+            if error == nil {
+                let vc = PhotoJournalViewController()
+                vc.modalPresentationStyle = .currentContext
+                strongSelf.navigationController?.setNavigationBarHidden(false, animated: true)
+                strongSelf.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                strongSelf.showErrorAlert(title: "Login", message: error!.localizedDescription)
+            }
+        }
+        
+        
     }
     
     func register(){

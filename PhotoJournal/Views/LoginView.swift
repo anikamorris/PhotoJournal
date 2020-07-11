@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+
 class LoginView: UIView {
     
     var delegate: LoginSignUpViewController? = nil
@@ -20,6 +21,8 @@ class LoginView: UIView {
         textField.attributedPlaceholder =
             NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         textField.placeholder = "Email"
+        textField.layer.cornerRadius = 5
+        textField.clipsToBounds = true
         return textField
     }()
     
@@ -32,6 +35,8 @@ class LoginView: UIView {
         textField.textColor = .black
         textField.attributedPlaceholder =
         NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.layer.cornerRadius = 5
+        textField.clipsToBounds = true
         return textField
     }()
     
@@ -42,6 +47,8 @@ class LoginView: UIView {
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Login", for: .normal)
+        button.layer.cornerRadius = 5
+        button.clipsToBounds = true
         button.addTarget(self, action: #selector(login), for: .touchUpInside)
         return button
     }()
@@ -53,6 +60,8 @@ class LoginView: UIView {
         button.backgroundColor = .black
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Register", for: .normal)
+        button.layer.cornerRadius = 5
+        button.clipsToBounds = true
         button.addTarget(self, action: #selector(gotoRegisterView), for: .touchUpInside)
         return button
     }()
