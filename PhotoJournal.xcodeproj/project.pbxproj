@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,7 @@
 		61B8078424541323004EAF61 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B8078324541323004EAF61 /* PhotoCollectionViewCell.swift */; };
 		61C9D78C2454912C00C1EB9E /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C9D78B2454912C00C1EB9E /* UIColorExt.swift */; };
 		61C9D78E245499FC00C1EB9E /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C9D78D245499FC00C1EB9E /* JournalView.swift */; };
+		CF4E705A24B9925F003B6D91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF4E705924B9925F003B6D91 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		61C9D78D245499FC00C1EB9E /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		7A583D7750FD19BAE3D7753D /* Pods-PhotoJournal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoJournal.release.xcconfig"; path = "Target Support Files/Pods-PhotoJournal/Pods-PhotoJournal.release.xcconfig"; sourceTree = "<group>"; };
 		9D9F4A2CD821DD3651BEB7F5 /* Pods-PhotoJournal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoJournal.debug.xcconfig"; path = "Target Support Files/Pods-PhotoJournal/Pods-PhotoJournal.debug.xcconfig"; sourceTree = "<group>"; };
+		CF4E705924B9925F003B6D91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D63676659C7244CF4A9FDE88 /* Pods-PhotoJournalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoJournalTests.release.xcconfig"; path = "Target Support Files/Pods-PhotoJournalTests/Pods-PhotoJournalTests.release.xcconfig"; sourceTree = "<group>"; };
 		DE39888A0229FA8E166F84B1 /* Pods_PhotoJournalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoJournalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -126,6 +128,7 @@
 				61B8077F245406E6004EAF61 /* ViewControllers */,
 				61B8075E24509394004EAF61 /* Assets.xcassets */,
 				61B8076024509394004EAF61 /* LaunchScreen.storyboard */,
+				CF4E705924B9925F003B6D91 /* GoogleService-Info.plist */,
 				61B8076324509394004EAF61 /* Info.plist */,
 			);
 			path = PhotoJournal;
@@ -170,7 +173,6 @@
 				4CB0D6DC6408D7FAB56E1A2F /* Pods-PhotoJournalTests.debug.xcconfig */,
 				D63676659C7244CF4A9FDE88 /* Pods-PhotoJournalTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -260,6 +262,7 @@
 			files = (
 				61B8076224509394004EAF61 /* LaunchScreen.storyboard in Resources */,
 				61B8075F24509394004EAF61 /* Assets.xcassets in Resources */,
+				CF4E705A24B9925F003B6D91 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,14 +511,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4E3GPM4HDT;
 				INFOPLIST_FILE = PhotoJournal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hazewritescode.projects.PhotoJournal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anikamorris.PhotoJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -527,14 +531,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4E3GPM4HDT;
 				INFOPLIST_FILE = PhotoJournal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hazewritescode.projects.PhotoJournal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anikamorris.PhotoJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -547,7 +552,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4E3GPM4HDT;
 				INFOPLIST_FILE = PhotoJournalTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -570,7 +575,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4E3GPM4HDT;
 				INFOPLIST_FILE = PhotoJournalTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

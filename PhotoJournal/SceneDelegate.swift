@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -22,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
+        FirebaseApp.configure()
         
         // nesting a viewController into a UINavigationview Controller
         let navController = UINavigationController(rootViewController: LoginSignUpViewController())
