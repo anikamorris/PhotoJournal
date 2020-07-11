@@ -9,7 +9,7 @@
 import Foundation
 
 struct Entry: Codable {
-    let imageData: String
+    let imagePath: String
     let textEntry: String
     let timeStamp: String
 }

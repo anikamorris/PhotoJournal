@@ -8,13 +8,34 @@
 
 import Foundation
 import UIKit
+import FirebaseStorage
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     static let identifier = "PhotoCollectionViewCell"
+    
+    let storage = Storage.storage()
+    var entry : Entry? = nil {
+        didSet {
+            if let entry = entry {
+                let httpRef = storage.reference(forURL: "\(entry.imagePath)")
+                httpRef.getData(maxSize: Int64.max) { data, error in
+                    if let error = error {
+                        print("Error gettting image: \(error.localizedDescription)")
+                    } else {
+                        let image = UIImage(data: data!)
+                        self.photoView.image = image
+                        self.photoCaptionLabel.text = entry.timeStamp
+                    }
+                }
+            }
+        }
+    }
+    
     let photoView: UIImageView = {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "testImage")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     let photoCaptionLabel: UILabel = {
